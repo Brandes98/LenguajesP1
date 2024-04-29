@@ -30,11 +30,21 @@ Elemento elementos[100] =
         {91, 140}, {92, 146}, {93, 144}, {94, 150}, {95, 148}, {96, 151}, {97, 150}, {98, 153},
         {99, 153}, {100, 157}    
     };
-	verTabla(elementos);
+	// verTabla(elementos);
 	double SumLogX = calcular_sum_logX(elementos);
     double SumLogY = calcular_sum_logY(elementos);
     double SumLogXY = calcular_sum_logXY(elementos);
     double SumLogX2 = calcular_sum_logX2(elementos);
+
+    // nk + sum(ln(x)) = sum(ln(y))
+    // sum(ln(x)) + sum(ln(x^2)) = sum(ln(x)ln(y)) 
+    double formula1[2][3] = {{100, SumLogX, SumLogY}
+                            ,{SumLogX, SumLogX2, SumLogXY}};
+
+    struct Tupla_doubles KB = aplicar_cramer(formula1);
+   
+    printf("El resultado final de k es: %f\n", KB.K);
+    printf("El resultado final de b es: %f\n", KB.B);
     printf("Sumatoria de los logaritmos de x: %f\n", SumLogX);
     printf("Sumatoria de los logaritmos de y: %f\n", SumLogY);
     printf("Sumatoria de los logaritmos de x*y: %f\n", SumLogXY);
