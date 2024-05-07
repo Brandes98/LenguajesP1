@@ -3,13 +3,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
+typedef struct
+{
+    int numeroAtomico;
+    char nombre[20];
+} TablaPeriodica;
 
 // Estructura de un elemento
 typedef struct
 {
     double numeroAtomico;
-    double neutrones;
+    int neutrones;
 } Elemento;
 
 // Estructura de las sumas de los logaritmos
@@ -33,7 +39,7 @@ void verTabla(Elemento elementos[])
 {
     for (int i = 0; i < 100; i++)
     {
-        printf("Element %d - Atomic Number: %f, Neutrons: %f\n",
+        printf("Element %d - Atomic Number: %f, Neutrons: %d\n",
                i + 1, elementos[i].numeroAtomico, elementos[i].neutrones);
     }
 }
@@ -95,6 +101,37 @@ Tupla_doubles aplicar_cramer(double ecuaciones[2][3])
 
     Tupla_doubles KB = {-K, B};
     return KB;
+}
+double obtener_parametro_a(double K)
+{
+    double a = exp(K);
+    return a;
+}
+
+void print_formula(double a, double B)
+{
+    printf("La formula es: y = %f * x^%f\n", a, B);
+}
+
+void generar_tabla_estimaciones(double a, double B, int estimaciones[100])
+{
+    printf("Generando tabla de estimaciones\n");
+    for (int i = 1; i <= 100; i++)
+    {
+        int estimacion = round(a * pow(i, B));
+        printf("Element %d - Estimacion: %d\n",
+               i, estimacion);
+        estimaciones[i - 1] = estimacion;
+    }
+}
+
+void desplegar_Tabla(TablaPeriodica elementos[100], Elemento lista[100], int estimaciones[100])
+{
+    for (int i = 0; i < 100; i++)
+    {
+        printf("Elemento %d - Numero Atomico: %d, Nombre: %s\n, Neutrones: %d, Estimacion: %d\n",
+               i + 1, elementos[i].numeroAtomico, elementos[i].nombre, lista[i].neutrones, estimaciones[i]);
+    }
 }
 
 #endif // FUNCTIONS_H
