@@ -14,6 +14,7 @@ Jose jimenez
 int main(int argc, char *argv[]) 
 {
 double lista[4];
+int estimaciones[100];
 Elemento elementos[100] = 
 	{
         {1, 0}, {2, 2}, {3, 4}, {4, 5}, {5, 6}, {6, 6}, {7, 7}, {8, 8}, {9, 10}, {10, 10},
@@ -30,6 +31,109 @@ Elemento elementos[100] =
         {91, 140}, {92, 146}, {93, 144}, {94, 150}, {95, 148}, {96, 151}, {97, 150}, {98, 153},
         {99, 153}, {100, 157}    
     };
+    TablaPeriodica tablaPeriodica[100] = {
+        {1, "Hidrógeno"},
+        {2, "Helio"},
+        {3, "Litio"},
+        {4, "Berilio"},
+        {5, "Boro"},
+        {6, "Carbono"},
+        {7, "Nitrógeno"},
+        {8, "Oxígeno"},
+        {9, "Flúor"},
+        {10, "Neón"},
+        {11, "Sodio"},
+        {12, "Magnesio"},
+        {13, "Aluminio"},
+        {14, "Silicio"},
+        {15, "Fósforo"},
+        {16, "Azufre"},
+        {17, "Cloro"},
+        {18, "Argón"},
+        {19, "Potasio"},
+        {20, "Calcio"},
+        {21, "Escandio"},
+        {22, "Titanio"},
+        {23, "Vanadio"},
+        {24, "Cromo"},
+        {25, "Manganeso"},
+        {26, "Hierro"},
+        {27, "Cobalto"},
+        {28, "Níquel"},
+        {29, "Cobre"},
+        {30, "Zinc"},
+        {31, "Galio"},
+        {32, "Germanio"},
+        {33, "Arsénico"},
+        {34, "Selenio"},
+        {35, "Bromo"},
+        {36, "Kriptón"},
+        {37, "Rubidio"},
+        {38, "Estroncio"},
+        {39, "Itrio"},
+        {40, "Circonio"},
+        {41, "Niobio"},
+        {42, "Molibdeno"},
+        {43, "Tecnecio"},
+        {44, "Rutenio"},
+        {45, "Rodio"},
+        {46, "Paladio"},
+        {47, "Plata"},
+        {48, "Cadmio"},
+        {49, "Indio"},
+        {50, "Estaño"},
+        {51, "Antimonio"},
+        {52, "Teluro"},
+        {53, "Yodo"},
+        {54, "Xenón"},
+        {55, "Cesio"},
+        {56, "Bario"},
+        {57, "Lantano"},
+        {58, "Cerio"},
+        {59, "Praseodimio"},
+        {60, "Neodimio"},
+        {61, "Prometio"},
+        {62, "Samario"},
+        {63, "Europio"},
+        {64, "Gadolinio"},
+        {65, "Terbio"},
+        {66, "Disprosio"},
+        {67, "Holmio"},
+        {68, "Erbio"},
+        {69, "Tulio"},
+        {70, "Iterbio"},
+        {71, "Lutecio"},
+        {72, "Hafnio"},
+        {73, "Tantalio"},
+        {74, "Wolframio"},
+        {75, "Renio"},
+        {76, "Osmio"},
+        {77, "Iridio"},
+        {78, "Platino"},
+        {79, "Oro"},
+        {80, "Mercurio"},
+        {81, "Talio"},
+        {82, "Plomo"},
+        {83, "Bismuto"},
+        {84, "Polonio"},
+        {85, "Astato"},
+        {86, "Radón"},
+        {87, "Francio"},
+        {88, "Radio"},
+        {89, "Actinio"},
+        {90, "Torio"},
+        {91, "Protactinio"},
+        {92, "Uranio"},
+        {93, "Neptunio"},
+        {94, "Plutonio"},
+        {95, "Americio"},
+        {96, "Curio"},
+        {97, "Berkelio"},
+        {98, "Californio"},
+        {99, "Einstenio"},
+        {100, "Fermio"}
+    };
+
 	verTabla(elementos);
     calcular_sumatorias(elementos,lista);
     verSumatorias(lista);
@@ -37,8 +141,11 @@ Elemento elementos[100] =
                             ,{lista[0], lista[3], lista[2]}};
 
     struct Tupla_doubles KB = aplicar_cramer(formula1);
-   
     printf("El resultado final de k es: %f\n", KB.K);
     printf("El resultado final de b es: %f\n", KB.B);
+    double a = obtener_parametro_a(KB.K);
+    print_formula(a, KB.B);
+    generar_tabla_estimaciones(a,KB.B,estimaciones);
+    desplegar_Tabla(tablaPeriodica,elementos,estimaciones);
 	return 0;
 }   
