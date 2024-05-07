@@ -34,7 +34,7 @@ typedef struct
     double B;
 } Tupla_doubles;
 
-// Funcion que imprime la tabla de elementos
+// TODO: No hace falta esta funcion
 void verTabla(Elemento elementos[])
 {
     for (int i = 0; i < 100; i++)
@@ -85,14 +85,17 @@ Tupla_doubles aplicar_cramer(double ecuaciones[2][3])
     // Calcular los determinantes
     double matriz_delta_K[2][2] = {{ecuaciones[0][1], ecuaciones[0][2]}, {ecuaciones[1][1], ecuaciones[1][2]}};
 
+    // TODO: Hacer inline
     double delta_K = calcular_determinante(matriz_delta_K);
 
     double matriz_delta_B[2][2] = {{ecuaciones[0][0], ecuaciones[0][2]}, {ecuaciones[1][0], ecuaciones[1][2]}};
 
+    // TODO: Hacer inline
     double delta_B = calcular_determinante(matriz_delta_B);
 
     double matriz_delta_S[2][2] = {{ecuaciones[0][0], ecuaciones[0][1]}, {ecuaciones[1][0], ecuaciones[1][1]}};
 
+    // TODO: Hacer inline
     double delta_S = calcular_determinante(matriz_delta_S);
 
     double K = delta_K / delta_S;
@@ -102,17 +105,20 @@ Tupla_doubles aplicar_cramer(double ecuaciones[2][3])
     Tupla_doubles KB = {-K, B};
     return KB;
 }
-double obtener_parametro_a(double K)
-{
-    double a = exp(K);
-    return a;
-}
 
 void print_formula(double a, double B)
 {
     printf("La formula es: y = %f * x^%f\n", a, B);
 }
 
+// TODO: Se puede unir esta funcion con otra funcion
+double obtener_parametro_a(double K)
+{
+    double a = exp(K);
+    return a;
+}
+
+// TODO: No es necesario hacer dos ciclos, se puede hacer en uno solo
 void generar_tabla_estimaciones(double a, double B, int estimaciones[100])
 {
     printf("Generando tabla de estimaciones\n");
@@ -124,12 +130,11 @@ void generar_tabla_estimaciones(double a, double B, int estimaciones[100])
         estimaciones[i - 1] = estimacion;
     }
 }
-
 void desplegar_Tabla(TablaPeriodica elementos[100], Elemento lista[100], int estimaciones[100])
 {
     for (int i = 0; i < 100; i++)
     {
-        printf("Elemento %d - Numero Atomico: %d, Nombre: %s\n, Neutrones: %d, Estimacion: %d\n",
+        printf("Elemento %d - Numero Atomico: %d, Nombre: %s,\n Neutrones: %d, Estimacion: %d\n",
                i + 1, elementos[i].numeroAtomico, elementos[i].nombre, lista[i].neutrones, estimaciones[i]);
     }
 }
