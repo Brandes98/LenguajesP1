@@ -102,7 +102,7 @@ void generar_tabla_estimaciones(double a, double B, int estimaciones[100]){
     printf("Generando tabla de estimaciones\n");
     for (int i = 1; i <= 100; i++) {
         int estimacion = round(a * pow(i, B));
-        printf("Element %d - Estimacion: %f\n",
+        printf("Element %d - Estimacion: %d\n",
               i, estimacion);
         estimaciones[i-1] = estimacion;
     }
