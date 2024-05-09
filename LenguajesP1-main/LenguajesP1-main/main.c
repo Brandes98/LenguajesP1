@@ -141,14 +141,7 @@ int main(int argc, char *argv[])
 
     Tupla_doubles KB = aplicar_cramer(formula1);
 
-    // TODO: Eliminar prints
-    printf("El resultado final de k es: %f\n", KB.K);
-    printf("El resultado final de b es: %f\n", KB.B);
-
     double a = obtener_parametro_a(KB.K);
-
-    // TODO: Eliminar prints
-    print_formula(a, KB.B);
 
     ///////////////////////////////////////////
     // 3. Desplegar la tabla de estimaciones //

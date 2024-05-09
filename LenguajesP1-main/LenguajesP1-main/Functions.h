@@ -72,31 +72,24 @@ LogSums calcular_sum_logs(Elemento elementos[])
     return sums;
 }
 
-// Funcion que calcula el determinante de una matriz de 2x2
-// TODO: Eliminar esta funcion, hacerla inline
-double calcular_determinante(double matriz_2x2[2][2])
-{
-    return matriz_2x2[0][0] * matriz_2x2[1][1] - matriz_2x2[0][1] * matriz_2x2[1][0];
-}
-
 // Funcion que aplica la regla de Cramer para resolver un sistema de ecuaciones de 2x2
 Tupla_doubles aplicar_cramer(double ecuaciones[2][3])
 {
-    // Calcular los determinantes
+    
     double matriz_delta_K[2][2] = {{ecuaciones[0][1], ecuaciones[0][2]}, {ecuaciones[1][1], ecuaciones[1][2]}};
 
-    // TODO: Hacer inline
-    double delta_K = calcular_determinante(matriz_delta_K);
+    // Se calcula el determinate de matriz_delta_K 
+    double delta_K = matriz_delta_K[0][0] * matriz_delta_K[1][1] - matriz_delta_K[0][1] * matriz_delta_K[1][0];
 
     double matriz_delta_B[2][2] = {{ecuaciones[0][0], ecuaciones[0][2]}, {ecuaciones[1][0], ecuaciones[1][2]}};
 
-    // TODO: Hacer inline
-    double delta_B = calcular_determinante(matriz_delta_B);
+    // Se calcula el determinate de matriz_delta_B 
+    double delta_B = matriz_delta_B[0][0] * matriz_delta_B[1][1] - matriz_delta_B[0][1] * matriz_delta_B[1][0];
 
     double matriz_delta_S[2][2] = {{ecuaciones[0][0], ecuaciones[0][1]}, {ecuaciones[1][0], ecuaciones[1][1]}};
 
-    // TODO: Hacer inline
-    double delta_S = calcular_determinante(matriz_delta_S);
+    // Se calcula el determinate de matriz_delta_S 
+    double delta_S = matriz_delta_S[0][0] * matriz_delta_S[1][1] - matriz_delta_S[0][1] * matriz_delta_S[1][0];
 
     double K = delta_K / delta_S;
 
