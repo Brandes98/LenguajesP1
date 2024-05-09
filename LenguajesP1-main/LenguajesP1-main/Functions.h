@@ -16,6 +16,7 @@ typedef struct
 {
     double numeroAtomico;
     int neutrones;
+    char nombre[20];
 } Elemento;
 
 // Estructura de las sumas de los logaritmos
@@ -75,20 +76,20 @@ LogSums calcular_sum_logs(Elemento elementos[])
 // Funcion que aplica la regla de Cramer para resolver un sistema de ecuaciones de 2x2
 Tupla_doubles aplicar_cramer(double ecuaciones[2][3])
 {
-    
+
     double matriz_delta_K[2][2] = {{ecuaciones[0][1], ecuaciones[0][2]}, {ecuaciones[1][1], ecuaciones[1][2]}};
 
-    // Se calcula el determinate de matriz_delta_K 
+    // Se calcula el determinate de matriz_delta_K
     double delta_K = matriz_delta_K[0][0] * matriz_delta_K[1][1] - matriz_delta_K[0][1] * matriz_delta_K[1][0];
 
     double matriz_delta_B[2][2] = {{ecuaciones[0][0], ecuaciones[0][2]}, {ecuaciones[1][0], ecuaciones[1][2]}};
 
-    // Se calcula el determinate de matriz_delta_B 
+    // Se calcula el determinate de matriz_delta_B
     double delta_B = matriz_delta_B[0][0] * matriz_delta_B[1][1] - matriz_delta_B[0][1] * matriz_delta_B[1][0];
 
     double matriz_delta_S[2][2] = {{ecuaciones[0][0], ecuaciones[0][1]}, {ecuaciones[1][0], ecuaciones[1][1]}};
 
-    // Se calcula el determinate de matriz_delta_S 
+    // Se calcula el determinate de matriz_delta_S
     double delta_S = matriz_delta_S[0][0] * matriz_delta_S[1][1] - matriz_delta_S[0][1] * matriz_delta_S[1][0];
 
     double K = delta_K / delta_S;
@@ -123,12 +124,12 @@ void generar_tabla_estimaciones(double a, double B, int estimaciones[100])
         estimaciones[i - 1] = estimacion;
     }
 }
-void desplegar_Tabla(TablaPeriodica elementos[100], Elemento lista[100], int estimaciones[100])
+void desplegar_Tabla(Elemento lista[100], int estimaciones[100])
 {
     for (int i = 0; i < 100; i++)
     {
         printf("Elemento %d - Numero Atomico: %d, Nombre: %s,\n Neutrones: %d, Estimacion: %d\n",
-               i + 1, elementos[i].numeroAtomico, elementos[i].nombre, lista[i].neutrones, estimaciones[i]);
+               i + 1, lista[i].numeroAtomico, lista[i].nombre, lista[i].neutrones, estimaciones[i]);
     }
 }
 
