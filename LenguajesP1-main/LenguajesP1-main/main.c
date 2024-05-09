@@ -9,8 +9,9 @@ Jose jimenez
 
                 */
 
-#include "obtener_funcion.h"
 #include "elementos.h"
+#include "obtener_funcion.h"
+#include "mostrar_tabla.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,15 +27,12 @@ int main(int argc, char *argv[])
     ////////////////////////////////////////////////
 
     Tupla_doubles AB = obtener_funcion(elementos);
-
-    printf("El valor es: %f\n", AB.second_double);
-    printf("El valor es: %f\n", AB.first_double);
+    
     ///////////////////////////////////////////
     // 3. Desplegar la tabla de estimaciones //
     ///////////////////////////////////////////
 
-    // TODO: Hacer solo un despliegue de la tabla
-    // generar_tabla_estimaciones(AB.first_double, AB.second_double, estimaciones);
-    // desplegar_Tabla(tablaPeriodica, elementos, estimaciones);
+    desplegar_Tabla(elementos,AB.first_double, AB.second_double);
+
     return 0;
 }

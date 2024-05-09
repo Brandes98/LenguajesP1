@@ -1,5 +1,5 @@
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
+#ifndef OBTENER_FUNCION_H
+#define OBTENER_FUNCION_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,13 +23,6 @@ typedef struct
     double sumLogX2;
 } LogSums;
 
-
-// Estructura de un elemento
-typedef struct
-{
-    double numeroAtomico;
-    int neutrones;
-} Elemento;
 
 
 // Funcion que calcula las sumas de los logaritmos de los elementos
@@ -89,7 +82,7 @@ Tupla_doubles aplicar_cramer(double ecuaciones[2][3])
     return KB;
 }
 
-Tupla_doubles obtener_funcion(Elemento elementos[]){
+Tupla_doubles obtener_funcion(Elemento *elementos){
 
     // Calcular las sumas de los logaritmos
     LogSums sums = calcular_sum_logs(elementos);
@@ -99,11 +92,11 @@ Tupla_doubles obtener_funcion(Elemento elementos[]){
 
     Tupla_doubles KB = aplicar_cramer(formula1);
 
-    Tupla_doubles AB = {log(KB.first_double), KB.second_double};
+    Tupla_doubles AB = {exp(KB.first_double), KB.second_double};
 
     return AB;
 }
 
 
 
-#endif // FUNCTIONS_H
+#endif // OBTENER_FUNCION_H

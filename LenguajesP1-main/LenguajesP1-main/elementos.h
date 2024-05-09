@@ -1,5 +1,5 @@
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
+#ifndef ELEMENTOS_H
+#define ELEMENTOS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,11 +7,12 @@
 #include <math.h>
 
 // Estructura de un elemento
-typedef struct
-{
+
+typedef struct {
     double numeroAtomico;
     int neutrones;
-    char* nombre;
+    char nombre[20];
+    
 } Elemento;
 
 Elemento elementos[] = {
@@ -121,4 +122,4 @@ Elemento* obtener_elementos(){
 }
 
 
-#endif // FUNCTIONS_H
+#endif // ELEMENTOS_H
