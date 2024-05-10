@@ -12,7 +12,7 @@ Jose jimenez
 #include "elementos.h"
 #include "obtener_funcion.h"
 #include "mostrar_tabla.h"
- 
+
 int main(int argc, char *argv[])
 {
 
