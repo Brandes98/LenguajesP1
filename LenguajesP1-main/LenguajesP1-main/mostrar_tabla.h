@@ -4,12 +4,20 @@
 
 
 void desplegar_Tabla(Elemento lista[100], double a, double b) {
-    for (int i = 0; i < 100; i++) {
-        int estimacion = round(a * pow(lista[i].numeroAtomico, b));
-        
-        printf("Elemento %d - Numero Atomico: %d, Nombre: %s, Neutrones: %d, Estimacion: %d\n",
-              i + 1, lista[i].numeroAtomico, lista[i].nombre, lista[i].neutrones, estimacion);
-    }
-}
+    char fin[107];
+    memset(fin, '-', sizeof(char) * 107);
+    fin[106] = '\0';
+    printf("\n\r|--------------|----------------|---------------|---------------------|-----------------------|------------|\n");
+    printf("|   Elemento   |     Nombre     |   Neutrones   | Neutrones(Truncado) | Neutrones(Redondeado) | Diferencia |\n");
+    printf("|--------------|----------------|---------------|---------------------|-----------------------|------------|\n");
 
+    for (int i = 0; i < 100; i++) {
+        int estimacion = a * pow(lista[i].numeroAtomico, b);
+        int redondeado = round(estimacion);
+        //Se castea a entero la estimacion para el valor truncado, se redondea y se saca la diferencia
+        printf("| %-12.0f | %-14s | %-13d | %-19d | %-21d | %-10d |\n", lista[i].numeroAtomico, lista[i].nombre, lista[i].neutrones, \
+        (int)estimacion, (int)redondeado, (int)redondeado - (int)estimacion);
+    }
+    printf("|%s|", fin);
+}
 #endif // MOSTRAR_TABLA_H
